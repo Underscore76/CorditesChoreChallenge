@@ -6,5 +6,5 @@
   "UniqueID": "cordite.chores",
   "EntryDll": "ChoreChallenge.dll",
   "MinimumApiVersion": "3.15.0",
-  "UpdateKeys": []
+  "UpdateKeys": [ "GitHub:Underscore76/CorditesChoreChallenge" ]
 }
