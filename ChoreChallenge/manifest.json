@@ -1,0 +1,10 @@
+﻿{
+  "Name": "ChoreChallenge",
+  "Author": "CorditeTV",
+  "Version": "1.0.0",
+  "Description": "Chore Completion Challenge",
+  "UniqueID": "cordite.chores",
+  "EntryDll": "ChoreChallenge.dll",
+  "MinimumApiVersion": "3.15.0",
+  "UpdateKeys": []
+}
