@@ -1,5 +1,6 @@
 ﻿using System;
-namespace ChoreChallenge
+
+namespace ChoreChallenge.Framework
 {
 	public abstract class CumulativeAchievement : IAchievement
 	{

@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using ChoreChallenge.Achievements;
 using HarmonyLib;
 using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Objects;
 
-namespace ChoreChallenge.Achievements
+namespace ChoreChallenge.Framework.Achievements
 {
 	public class FiveFingers : CumulativeAchievement
 	{

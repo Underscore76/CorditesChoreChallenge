@@ -3,7 +3,7 @@ using HarmonyLib;
 using StardewModdingAPI;
 using StardewValley;
 
-namespace ChoreChallenge.Achievements
+namespace ChoreChallenge.Framework.Achievements
 {
 	public class Stinky : IAchievement
 	{

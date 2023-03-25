@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using StardewModdingAPI;
 
-namespace ChoreChallenge
+namespace ChoreChallenge.Framework
 {
     public abstract class UniqueItems : IAchievement
     {

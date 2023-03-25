@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using ChoreChallenge.Achievements;
 using HarmonyLib;
 using StardewModdingAPI;
 using StardewValley;
 
-namespace ChoreChallenge.Achievements
+namespace ChoreChallenge.Framework.Achievements
 {
     public class UberEatsDriverI : IAchievement
     {

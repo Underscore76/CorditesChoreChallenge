@@ -5,7 +5,7 @@ using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Menus;
 
-namespace ChoreChallenge.Achievements
+namespace ChoreChallenge.Framework.Achievements
 {
 	public class MusicProducer : IAchievement
 	{

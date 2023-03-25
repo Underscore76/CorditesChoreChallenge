@@ -4,7 +4,7 @@ using StardewModdingAPI;
 using StardewValley;
 using HarmonyLib;
 
-namespace ChoreChallenge.Achievements
+namespace ChoreChallenge.Framework.Achievements
 {
     public class BringOwlyHome : IAchievement
     {

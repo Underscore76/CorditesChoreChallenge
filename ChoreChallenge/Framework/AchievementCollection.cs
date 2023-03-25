@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using HarmonyLib;
 using StardewModdingAPI;
 
-namespace ChoreChallenge
+namespace ChoreChallenge.Framework
 {
     public abstract class AchievementCollection : IAchievement
     {

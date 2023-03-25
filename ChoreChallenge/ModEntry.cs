@@ -7,7 +7,8 @@ using HarmonyLib;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 
-using ChoreChallenge.Achievements;
+using ChoreChallenge.Framework;
+using ChoreChallenge.Framework.Achievements;
 
 namespace ChoreChallenge
 {

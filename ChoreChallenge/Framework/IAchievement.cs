@@ -3,7 +3,7 @@ using StardewModdingAPI;
 using StardewValley;
 using HarmonyLib;
 
-namespace ChoreChallenge
+namespace ChoreChallenge.Framework
 {
 	public abstract class IAchievement
 	{

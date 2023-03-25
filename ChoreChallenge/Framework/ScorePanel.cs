@@ -5,7 +5,7 @@ using StardewValley;
 using StardewValley.BellsAndWhistles;
 using StardewValley.Tools;
 
-namespace ChoreChallenge
+namespace ChoreChallenge.Framework
 {
     public class ScorePanel
     {

@@ -3,7 +3,7 @@ using HarmonyLib;
 using StardewModdingAPI;
 using StardewValley;
 
-namespace ChoreChallenge.Achievements
+namespace ChoreChallenge.Framework.Achievements
 {
     // use this template to copy paste in a new class
     public class TemplateAchievement : IAchievement

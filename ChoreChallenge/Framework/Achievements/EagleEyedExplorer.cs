@@ -7,7 +7,7 @@ using HarmonyLib;
 using StardewValley.Locations;
 using StardewValley;
 
-namespace ChoreChallenge.Achievements
+namespace ChoreChallenge.Framework.Achievements
 {
 	public class EagleEyedExplorer : CumulativeAchievement
 	{

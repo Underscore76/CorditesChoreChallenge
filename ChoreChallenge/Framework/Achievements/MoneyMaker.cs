@@ -2,7 +2,7 @@
 using HarmonyLib;
 using StardewValley;
 
-namespace ChoreChallenge.Achievements
+namespace ChoreChallenge.Framework.Achievements
 {
     public class MoneyMaker : IAchievement
     {
