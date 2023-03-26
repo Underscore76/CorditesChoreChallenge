@@ -152,10 +152,11 @@ namespace ChoreChallenge
             if (!Context.IsWorldReady)
                 return;
 
+            TimerMenu.Start();
+            Game1.onScreenMenus.Add(TimerMenu);
             if (IsGameValid())
             {
                 HasFinished = false;
-                TimerMenu.Start();
                 foreach (var ach in Achievements)
                 {
                     ach.OnSaveLoaded();
@@ -163,8 +164,6 @@ namespace ChoreChallenge
 
                 Game1.onScreenMenus.Remove(Game1.chatBox);
                 Game1.onScreenMenus.Add(Game1.chatBox = new CustomChatBox());
-                // could probably remove 
-                Game1.onScreenMenus.Add(TimerMenu);
                 if (IsCheating)
                 {
                     DrawHelper.DisplayWarning("****OTHER MODS DETECTED: Have Fun Practicing****");
