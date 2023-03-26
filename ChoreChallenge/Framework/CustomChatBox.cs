@@ -13,7 +13,7 @@ namespace ChoreChallenge.Framework
     // Allows Scrolling History
 	public class CustomChatBox : ChatBox
 	{
-        private readonly int MaxMessageToDisplay = 15;
+        private readonly int MaxMessageToDisplay = 10;
         private int HistoryTail;
         private static IReflectionHelper Reflection;
         // a reference to the underlying chat boxes private messages
