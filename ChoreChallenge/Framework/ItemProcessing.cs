@@ -116,5 +116,11 @@ namespace ChoreChallenge.Framework
             ActiveMachines.Clear();
             base.OnSaveLoaded();
         }
+
+        public override void OnEnd()
+        {
+            RunEndOfDay();
+            base.OnEnd();
+        }
     }
 }

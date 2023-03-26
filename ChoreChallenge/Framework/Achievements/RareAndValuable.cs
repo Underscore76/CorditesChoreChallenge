@@ -17,7 +17,6 @@ namespace ChoreChallenge.Framework.Achievements
 
         public override void OnUpdate()
         {
-            instance.Monitor.Log($"{InitialShards}/{Game1.stats.PrismaticShardsFound}", LogLevel.Alert);
             if (Game1.stats.PrismaticShardsFound >= InitialShards + 2)
             {
                 instance.HasSeen = true;

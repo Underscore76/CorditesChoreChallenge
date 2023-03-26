@@ -64,7 +64,6 @@ namespace ChoreChallenge.Framework.Achievements
 					{
 						Chests[location.Name].Add(chest.TileLocation);
 						MaxValue++;
-						this.Monitor.Log($"{location.Name}: {chest.TileLocation}", LogLevel.Alert);
 					}
 				}
 			}
