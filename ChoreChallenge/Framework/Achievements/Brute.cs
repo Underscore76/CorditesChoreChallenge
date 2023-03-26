@@ -55,14 +55,24 @@ namespace ChoreChallenge.Framework.Achievements
                 var monster = tuple.Item1;
                 var originalHealth = tuple.Item2;
                 int damageAmount = originalHealth - monster.Health;
+
                 if (damageAmount >= 100)
                 {
                     foreach (var debris in __instance.debris.Where(d => d.debrisType.Value == DebrisType.NUMBERS))
                     {
+                        /* GameLocation.damageMonster(...)
+                        if (damageAmount == -1) {
+                            ...
+                        } else {
+                            ...
+                            debris.Add(new Debris(damageAmount, new Vector2(monsterBox.Center.X + 16, monsterBox.Center.Y), crit ? Color.Yellow : new Color(255, 130, 0), crit ? (1f + (float)damageAmount / 300f) : 1f, monster));
+                            ...
+                        }
+                        */
                         if (
                             debris.toHover == monster &&
                             debris.chunkType.Value == damageAmount &&
-                            debris.nonSpriteChunkColor.Value != Color.Yellow
+                            debris.nonSpriteChunkColor.Value != Color.Yellow // this color is set for the crit debris
                             )
                         {
                             instance.HasSeen = true;
