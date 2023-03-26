@@ -91,6 +91,8 @@ namespace ChoreChallenge
             Achievements.Add(new DutifulFarmer());
             Achievements.Add(new ModernComfort());
             Achievements.Add(new Capitalist());
+            Achievements.Add(new ClintDeservesLoveToo());
+            Achievements.Add(new Ethereal());
 
 
             var harmony = new Harmony(this.ModManifest.UniqueID);
