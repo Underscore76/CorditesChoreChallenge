@@ -41,6 +41,7 @@ namespace ChoreChallenge
             Achievements.Add(new MadHatter());
             Achievements.Add(new MusicProducer());
             Achievements.Add(new PlayAPrank());
+            Achievements.Add(new TwoTilesOfRange());
 
 
             var harmony = new Harmony(this.ModManifest.UniqueID);
