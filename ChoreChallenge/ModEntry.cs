@@ -45,6 +45,8 @@ namespace ChoreChallenge
             Achievements.Add(new Geologist());
             Achievements.Add(new TrashToTreasure());
             Achievements.Add(new MasterOfMayo());
+            Achievements.Add(new PopTheBalloon());
+            Achievements.Add(new RareAndValuable());
             Achievements.Add(new TwoTilesOfRange());
 
 
