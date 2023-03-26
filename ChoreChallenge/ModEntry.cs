@@ -52,6 +52,7 @@ namespace ChoreChallenge
             Achievements.Add(new Brute());
             Achievements.Add(new Extinction());
             Achievements.Add(new KweeLittleChallenge());
+            Achievements.Add(new DutifulFarmer());
 
 
             var harmony = new Harmony(this.ModManifest.UniqueID);
