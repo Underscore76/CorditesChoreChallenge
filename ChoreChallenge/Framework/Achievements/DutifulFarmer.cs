@@ -5,6 +5,7 @@ using StardewModdingAPI;
 using StardewValley;
 using StardewValley.TerrainFeatures;
 using Microsoft.Xna.Framework;
+using StardewValley.Tools;
 
 namespace ChoreChallenge.Framework.Achievements
 {
@@ -12,6 +13,7 @@ namespace ChoreChallenge.Framework.Achievements
     {
         private HashSet<Vector2> CropLocations;
         private HashSet<long> HasMilk;
+        private bool FailedCrops;
         private bool FinishedCrops;
         private bool FinishedAnimals;
         private static DutifulFarmer instance;
@@ -23,10 +25,43 @@ namespace ChoreChallenge.Framework.Achievements
             HasMilk = new HashSet<long>();
         }
 
+        public override void Patch(Harmony harmony)
+        {
+            harmony.Patch(
+                original: AccessTools.Method(typeof(HoeDirt), "performToolAction"),
+                prefix: new HarmonyMethod(typeof(DutifulFarmer), nameof(DutifulFarmer.Prefix_performToolAction))
+                );
+        }
+        //performToolAction(Tool t, int damage, Vector2 tileLocation, GameLocation location)
+        public static bool Prefix_performToolAction(HoeDirt __instance, Tool t, int damage, Vector2 tileLocation, GameLocation location)
+        {
+            if (!instance.FailedCrops && location.IsFarm)
+            {
+                if (__instance.crop is Crop crop)
+                {
+                    if (t == null && damage > 0)
+                    {
+                        instance.FailedCrops = true;
+                    }
+                    else if (t.isHeavyHitter() && !(t is Hoe) && !(t is MeleeWeapon))
+                    {
+                        instance.FailedCrops = true;
+                    }
+                }
+                if (instance.FailedCrops)
+                {
+                    DrawHelper.DisplayWarning($"Failed: {instance.Description}");
+                }
+            }
+            return true;
+        }
+
         public override void OnUpdate()
         {
             base.OnUpdate();
-            if (!FinishedCrops)
+            if (FailedCrops) return;
+
+            if (!FailedCrops && !FinishedCrops)
             {
                 ScanCrops();
             }
@@ -34,7 +69,7 @@ namespace ChoreChallenge.Framework.Achievements
             {
                 ScanAnimals();
             }
-            if (FinishedCrops && FinishedAnimals)
+            if (!FailedCrops && FinishedCrops && FinishedAnimals)
             {
                 HasSeen = true;
             }
@@ -110,6 +145,7 @@ namespace ChoreChallenge.Framework.Achievements
         public override void OnSaveLoaded()
         {
             base.OnSaveLoaded();
+            FailedCrops = false;
             FinishedCrops = false;
             FinishedAnimals = false;
             CropLocations.Clear();
