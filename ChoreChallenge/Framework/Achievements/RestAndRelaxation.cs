@@ -41,13 +41,13 @@ namespace ChoreChallenge.Framework.Achievements
                 {
                     instance.HasSeen = true;
                 }
-                instance.Monitor.Log($"{nameof(RestAndRelaxation)} - swimming, current stamina {farmer.Stamina}, starting {instance.startingEnergy}, regained {instance.energyRegained}", LogLevel.Debug);
+                //instance.Monitor.Log($"{nameof(RestAndRelaxation)} - swimming, current stamina {farmer.Stamina}, starting {instance.startingEnergy}, regained {instance.energyRegained}", LogLevel.Debug);
             }
             else if (instance.startingEnergy.HasValue)
             {
                 instance.energyRegained = 0;
                 instance.startingEnergy = null;
-                instance.Monitor.Log($"{nameof(RestAndRelaxation)} - stopped swimming", LogLevel.Debug);
+                //instance.Monitor.Log($"{nameof(RestAndRelaxation)} - stopped swimming", LogLevel.Debug);
             }
         }
     }

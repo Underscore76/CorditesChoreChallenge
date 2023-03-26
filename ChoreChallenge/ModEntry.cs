@@ -49,6 +49,7 @@ namespace ChoreChallenge
             Achievements.Add(new RareAndValuable());
             Achievements.Add(new TwoTilesOfRange());
             Achievements.Add(new RestAndRelaxation());
+            Achievements.Add(new Brute());
             Achievements.Add(new Extinction());
             Achievements.Add(new KweeLittleChallenge());
 
