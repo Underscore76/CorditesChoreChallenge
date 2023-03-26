@@ -43,7 +43,7 @@ namespace ChoreChallenge.Framework.Achievements
                 }
                 //instance.Monitor.Log($"{nameof(RestAndRelaxation)} - swimming, current stamina {farmer.Stamina}, starting {instance.startingEnergy}, regained {instance.energyRegained}", LogLevel.Debug);
             }
-            else
+            else if (instance.startingEnergy.HasValue)
             {
                 instance.energyRegained = 0;
                 instance.startingEnergy = null;
