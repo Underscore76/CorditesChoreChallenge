@@ -29,7 +29,6 @@ namespace ChoreChallenge.Framework.Achievements
             {
                 instance.HasSeen = true;
             }
-            instance.Monitor.Log($"{__result} {location.Name} {item.Name}", LogLevel.Alert);
         }
     }
 }

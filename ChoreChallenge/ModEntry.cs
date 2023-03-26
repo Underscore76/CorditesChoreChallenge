@@ -93,6 +93,7 @@ namespace ChoreChallenge
             Achievements.Add(new Capitalist());
             Achievements.Add(new ClintDeservesLoveToo());
             Achievements.Add(new Ethereal());
+            Achievements.Add(new SafetyFirst());
 
 
             var harmony = new Harmony(this.ModManifest.UniqueID);
