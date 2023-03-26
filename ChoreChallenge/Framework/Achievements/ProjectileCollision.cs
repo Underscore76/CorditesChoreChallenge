@@ -45,7 +45,6 @@ namespace ChoreChallenge.Framework.Achievements
             {
                 instance.HasSeen = true;
             }
-
             return true;
         }
     }
