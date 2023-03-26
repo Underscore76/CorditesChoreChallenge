@@ -144,7 +144,7 @@ namespace ChoreChallenge.Framework.UI
 
         private void DrawScore(SpriteBatch b)
         {
-            string text = $"={(300+LastScore).ToString().PadLeft(3)}";
+            string text = $"={LastScore.ToString().PadLeft(3)}";
             Vector2 textSize = Game1.dialogueFont.MeasureString(text);
 
             Utility.drawTextWithShadow(
