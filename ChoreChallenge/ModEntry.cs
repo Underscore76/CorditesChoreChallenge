@@ -50,6 +50,7 @@ namespace ChoreChallenge
             Achievements.Add(new TwoTilesOfRange());
             Achievements.Add(new RestAndRelaxation());
             Achievements.Add(new Extinction());
+            Achievements.Add(new KweeLittleChallenge());
 
 
             var harmony = new Harmony(this.ModManifest.UniqueID);
