@@ -131,24 +131,36 @@ namespace ChoreChallenge
             }
         }
 
+        private static bool IsGameValid()
+        {
+            return Game1.uniqueIDForThisGame == 338344445 && Game1.player.farmName.Value == "Chore Day" && Game1.player.Name == "Cord" && Game1.stats.DaysPlayed == 46 && Game1.GetSaveGameName() == "Choreday";
+        }
+
         private void GameLoop_SaveLoaded(object sender, SaveLoadedEventArgs e)
         {
             if (!Context.IsWorldReady)
                 return;
 
-            HasFinished = false;
-            TimerMenu.Start();
-            foreach (var ach in Achievements)
+            if (IsGameValid())
             {
-                ach.OnSaveLoaded();
-            }
+                HasFinished = false;
+                TimerMenu.Start();
+                foreach (var ach in Achievements)
+                {
+                    ach.OnSaveLoaded();
+                }
 
-            Game1.onScreenMenus.Remove(Game1.chatBox);
-            Game1.onScreenMenus.Add(Game1.chatBox = new CustomChatBox());
-            Game1.onScreenMenus.Add(TimerMenu);
-            if (IsCheating)
+                Game1.onScreenMenus.Remove(Game1.chatBox);
+                Game1.onScreenMenus.Add(Game1.chatBox = new CustomChatBox());
+                Game1.onScreenMenus.Add(TimerMenu);
+                if (IsCheating)
+                {
+                    DrawHelper.DisplayWarning("****OTHER MODS DETECTED: Have Fun Practicing****");
+                }
+            }
+            else
             {
-                DrawHelper.DisplayWarning("****OTHER MODS DETECTED: Have Fun Practicing****");
+                DrawHelper.DisplayWarning("****GAME NOT VALID FOR CHORE CHALLENGE****");
             }
         }
 
