@@ -27,7 +27,7 @@ namespace ChoreChallenge.Framework.Achievements
             if (item?.Name == "Golden Scythe")
             {
                 instance.HasSeen = true;
-                instance.Monitor.Log($"${nameof(TwoTilesOfRange)} - Added item to inventory: {item?.Name}", LogLevel.Info);
+                instance.Monitor.Log($"{nameof(TwoTilesOfRange)} - Added item to inventory: {item?.Name}", LogLevel.Info);
             }
         }
     }

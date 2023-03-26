@@ -46,6 +46,7 @@ namespace ChoreChallenge
             Achievements.Add(new TrashToTreasure());
             Achievements.Add(new MasterOfMayo());
             Achievements.Add(new TwoTilesOfRange());
+            Achievements.Add(new RestAndRelaxation());
 
 
             var harmony = new Harmony(this.ModManifest.UniqueID);
