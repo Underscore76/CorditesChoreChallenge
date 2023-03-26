@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using HarmonyLib;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
+using StardewValley;
 
 using ChoreChallenge.Framework;
 using ChoreChallenge.Framework.Achievements;
@@ -41,7 +42,9 @@ namespace ChoreChallenge
             Achievements.Add(new MadHatter());
             Achievements.Add(new MusicProducer());
             Achievements.Add(new PlayAPrank());
-
+            Achievements.Add(new Geologist());
+            Achievements.Add(new TrashToTreasure());
+            Achievements.Add(new MasterOfMayo());
 
             var harmony = new Harmony(this.ModManifest.UniqueID);
             foreach (var ach in Achievements)
@@ -60,6 +63,7 @@ namespace ChoreChallenge
         {
             if (!Context.IsWorldReady)
                 return;
+
             Score = 0;
             foreach (var ach in Achievements)
             {

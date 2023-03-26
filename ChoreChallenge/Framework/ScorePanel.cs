@@ -10,6 +10,8 @@ namespace ChoreChallenge.Framework
     public class ScorePanel
     {
         private DateTime StartTime;
+        private DateTime EndTime;
+        public bool HasEnded;
         public ScorePanel()
         {
             Start();
@@ -17,6 +19,21 @@ namespace ChoreChallenge.Framework
         public void Start()
         {
             StartTime = DateTime.Now;
+            HasEnded = false;
+        }
+        public void End()
+        {
+            EndTime = DateTime.Now;
+            HasEnded = true;
+        }
+        public TimeSpan Duration
+        {
+            get
+            {
+                if (HasEnded)
+                    return EndTime - StartTime;
+                return DateTime.Now - StartTime;
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch, int score)
