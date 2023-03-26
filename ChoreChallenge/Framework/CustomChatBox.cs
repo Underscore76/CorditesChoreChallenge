@@ -54,7 +54,7 @@ namespace ChoreChallenge.Framework
         {
             int heightSoFar = 0;
             bool drawBG = false;
-            for (int j = HistoryTail; j >= Math.Max(0, HistoryTail-MaxMessageToDisplay); j--)
+            for (int j = HistoryTail; j >= Math.Max(0, HistoryTail-MaxMessageToDisplay) && j < Messages.Count; j--)
             {
                 ChatMessage message = Messages[j];
                 if (chatBox.Selected || message.alpha > 0.01f)
@@ -68,7 +68,7 @@ namespace ChoreChallenge.Framework
                 IClickableMenu.drawTextureBox(b, Game1.mouseCursors, new Rectangle(301, 288, 15, 15), xPositionOnScreen, yPositionOnScreen - heightSoFar - 20 + ((!chatBox.Selected) ? chatBox.Height : 0), chatBox.Width, heightSoFar + 20, Color.White, 4f, drawShadow: false);
             }
             heightSoFar = 0;
-            for (int i = HistoryTail; i >= Math.Max(0, HistoryTail - MaxMessageToDisplay); i--)
+            for (int i = HistoryTail; i >= Math.Max(0, HistoryTail - MaxMessageToDisplay) && i < Messages.Count; i--)
             {
                 ChatMessage message2 = Messages[i];
                 heightSoFar += message2.verticalSize;
