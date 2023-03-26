@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using ChoreChallenge.Framework.Achievements;
 using HarmonyLib;
@@ -54,28 +54,25 @@ namespace ChoreChallenge.Framework
         {
             int heightSoFar = 0;
             bool drawBG = false;
-            if (Messages.Count > 0)
+            for (int j = HistoryTail; j >= Math.Max(0, HistoryTail-MaxMessageToDisplay) && j < Messages.Count; j--)
             {
-                for (int j = HistoryTail; j >= Math.Max(0, HistoryTail - MaxMessageToDisplay); j--)
-                {
-                    ChatMessage message = Messages[j];
-                    if (chatBox.Selected || message.alpha > 0.01f)
-                    {
-                        heightSoFar += message.verticalSize;
-                        drawBG = true;
-                    }
-                }
-                if (drawBG)
-                {
-                    IClickableMenu.drawTextureBox(b, Game1.mouseCursors, new Rectangle(301, 288, 15, 15), xPositionOnScreen, yPositionOnScreen - heightSoFar - 20 + ((!chatBox.Selected) ? chatBox.Height : 0), chatBox.Width, heightSoFar + 20, Color.White, 4f, drawShadow: false);
-                }
-                heightSoFar = 0;
-                for (int i = HistoryTail; i >= Math.Max(0, HistoryTail - MaxMessageToDisplay); i--)
-                {
-                    ChatMessage message2 = Messages[i];
-                    heightSoFar += message2.verticalSize;
-                    message2.draw(b, xPositionOnScreen + 12, yPositionOnScreen - heightSoFar - 8 + ((!chatBox.Selected) ? chatBox.Height : 0));
-                }
+                  ChatMessage message = Messages[j];
+                  if (chatBox.Selected || message.alpha > 0.01f)
+                  {
+                      heightSoFar += message.verticalSize;
+                      drawBG = true;
+                  }
+            }
+            if (drawBG)
+            {
+                IClickableMenu.drawTextureBox(b, Game1.mouseCursors, new Rectangle(301, 288, 15, 15), xPositionOnScreen, yPositionOnScreen - heightSoFar - 20 + ((!chatBox.Selected) ? chatBox.Height : 0), chatBox.Width, heightSoFar + 20, Color.White, 4f, drawShadow: false);
+            }
+            heightSoFar = 0;
+            for (int i = HistoryTail; i >= Math.Max(0, HistoryTail - MaxMessageToDisplay) && i < Messages.Count; i--)
+            {
+                ChatMessage message2 = Messages[i];
+                heightSoFar += message2.verticalSize;
+                message2.draw(b, xPositionOnScreen + 12, yPositionOnScreen - heightSoFar - 8 + ((!chatBox.Selected) ? chatBox.Height : 0));
             }
             if (chatBox.Selected)
             {
