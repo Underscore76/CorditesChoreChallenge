@@ -45,6 +45,7 @@ namespace ChoreChallenge
             Achievements.Add(new Geologist());
             Achievements.Add(new TrashToTreasure());
             Achievements.Add(new MasterOfMayo());
+            Achievements.Add(new PopTheBalloon());
 
             var harmony = new Harmony(this.ModManifest.UniqueID);
             foreach (var ach in Achievements)
