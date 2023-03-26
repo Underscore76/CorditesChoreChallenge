@@ -47,7 +47,8 @@ namespace ChoreChallenge
             Achievements.Add(new MasterOfMayo());
             Achievements.Add(new PopTheBalloon());
             Achievements.Add(new RareAndValuable());
-
+            Achievements.Add(new TwoTilesOfRange());
+            Achievements.Add(new RestAndRelaxation());
 
 
             var harmony = new Harmony(this.ModManifest.UniqueID);
