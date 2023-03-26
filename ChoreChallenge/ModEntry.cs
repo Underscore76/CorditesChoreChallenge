@@ -55,6 +55,7 @@ namespace ChoreChallenge
             helper.Events.GameLoop.SaveLoaded += GameLoop_SaveLoaded;
             helper.Events.GameLoop.UpdateTicked += GameLoop_UpdateTicked;
             helper.Events.GameLoop.DayEnding += GameLoop_DayEnding;
+            helper.Events.Display.Rendered += Display_Rendered;
 
             IsCheating = !IsOnlyMod();
             CustomChatBox.Register(helper);
@@ -102,6 +103,16 @@ namespace ChoreChallenge
                 ach.Initialize(this.Monitor, helper.Reflection);
                 ach.Patch(harmony);
             }
+        }
+
+        private void Display_Rendered(object sender, RenderedEventArgs e)
+        {
+            if (!Context.IsWorldReady)
+                return;
+
+            // this leads to a double draw but it forces it to be always on top
+            if (TimerMenu != null)
+                TimerMenu.draw(e.SpriteBatch);
         }
 
         private void GameLoop_DayEnding(object sender, DayEndingEventArgs e)
@@ -152,6 +163,7 @@ namespace ChoreChallenge
 
                 Game1.onScreenMenus.Remove(Game1.chatBox);
                 Game1.onScreenMenus.Add(Game1.chatBox = new CustomChatBox());
+                // could probably remove 
                 Game1.onScreenMenus.Add(TimerMenu);
                 if (IsCheating)
                 {
