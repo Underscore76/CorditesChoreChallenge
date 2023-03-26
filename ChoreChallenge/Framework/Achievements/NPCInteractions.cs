@@ -30,10 +30,6 @@ namespace ChoreChallenge.Framework.Achievements
                 original: AccessTools.Method(typeof(Dialogue), "chooseResponse"),
                 prefix: new HarmonyMethod(typeof(MusicProducer), nameof(MusicProducer.Prefix_chooseResponse))
                 );
-            harmony.Patch(
-                original: AccessTools.Method(typeof(Event), "exitEvent"),
-                postfix: new HarmonyMethod(typeof(MusicProducer), nameof(MusicProducer.Postfix_exitEvent))
-                );
         }
 
         public static bool Prefix_chooseResponse(Response response)
@@ -43,15 +39,6 @@ namespace ChoreChallenge.Framework.Achievements
                 instance.HasSeen = true;
             }
             return true;
-        }
-
-        public static void Postfix_exitEvent(Event __instance)
-        {
-            instance.Monitor.Log($"{__instance.id}", LogLevel.Alert);
-            if (Game1.player.eventsSeen.Contains(__instance.id))
-            {
-                instance.HasSeen = true;
-            }
         }
     }
 
