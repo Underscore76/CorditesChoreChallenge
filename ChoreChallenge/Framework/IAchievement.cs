@@ -2,6 +2,7 @@
 using StardewModdingAPI;
 using StardewValley;
 using HarmonyLib;
+using Microsoft.Xna.Framework;
 
 namespace ChoreChallenge.Framework
 {
@@ -10,13 +11,13 @@ namespace ChoreChallenge.Framework
         protected IMonitor Monitor;
         protected IReflectionHelper Reflection;
 
-        protected string Description;
+        public string Description { get; protected set; }
+		public int Score { get; protected set; }
 		public virtual int GetScore()
 		{
 			if (hasSeen) return Score;
 			return 0;
 		}
-		protected int Score;
 
 		private bool hasSeen;
 		public bool HasSeen {
@@ -29,7 +30,7 @@ namespace ChoreChallenge.Framework
 				if (hasSeen) return;
 				if (value)
 				{
-					DisplayAchievement(Description);
+					DisplayAchievement();
                 }
 				hasSeen = value;
 			}
@@ -46,20 +47,21 @@ namespace ChoreChallenge.Framework
 			Reflection = reflection;
 		}
 
-		public void DisplayAchievement(string description)
+		public void DisplayAchievement()
 		{
-            Game1.addHUDMessage(new HUDMessage(description, achievement: true));
+			DrawHelper.DisplayAchievementUnlock(this);
         }
 
         public void DisplayInfo(string info)
         {
-            Game1.addHUDMessage(new HUDMessage(info, HUDMessage.newQuest_type));
+            DrawHelper.DisplayInfo(info);
         }
 
 		public virtual void Patch(Harmony harmony) { }
 
 		public virtual void OnSaveLoaded() { hasSeen = false; }
 		public virtual void OnUpdate() { }
+		public virtual void OnEnd() { OnUpdate(); }
 	}
 }
 

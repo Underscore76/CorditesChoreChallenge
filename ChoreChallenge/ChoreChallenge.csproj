@@ -13,11 +13,13 @@
     <None Remove="Framework\Achievements\" />
     <None Remove="Framework\Events\" />
     <None Remove="Framework\Patches\" />
+    <None Remove="Framework\UI\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Framework\" />
     <Folder Include="Framework\Achievements\" />
     <Folder Include="Framework\Events\" />
     <Folder Include="Framework\Patches\" />
+    <Folder Include="Framework\UI\" />
   </ItemGroup>
 </Project>

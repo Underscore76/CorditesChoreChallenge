@@ -7,7 +7,7 @@ namespace ChoreChallenge.Framework
 {
     public abstract class AchievementCollection : IAchievement
     {
-        private List<IAchievement> Achievements;
+        public List<IAchievement> Achievements;
         public AchievementCollection(string description, int score, List<IAchievement> achievements) : base(description, score)
         {
             Achievements = new List<IAchievement>(achievements);
