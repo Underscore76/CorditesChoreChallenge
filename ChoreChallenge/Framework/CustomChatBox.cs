@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using ChoreChallenge.Framework.Achievements;
 using HarmonyLib;
@@ -56,12 +56,12 @@ namespace ChoreChallenge.Framework
             bool drawBG = false;
             for (int j = HistoryTail; j >= Math.Max(0, HistoryTail-MaxMessageToDisplay) && j < Messages.Count; j--)
             {
-                ChatMessage message = Messages[j];
-                if (chatBox.Selected || message.alpha > 0.01f)
-                {
-                    heightSoFar += message.verticalSize;
-                    drawBG = true;
-                }
+                  ChatMessage message = Messages[j];
+                  if (chatBox.Selected || message.alpha > 0.01f)
+                  {
+                      heightSoFar += message.verticalSize;
+                      drawBG = true;
+                  }
             }
             if (drawBG)
             {
