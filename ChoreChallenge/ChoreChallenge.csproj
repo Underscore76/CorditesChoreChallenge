@@ -11,9 +11,13 @@
   <ItemGroup>
     <None Remove="Framework\" />
     <None Remove="Framework\Achievements\" />
+    <None Remove="Framework\Events\" />
+    <None Remove="Framework\Patches\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Framework\" />
     <Folder Include="Framework\Achievements\" />
+    <Folder Include="Framework\Events\" />
+    <Folder Include="Framework\Patches\" />
   </ItemGroup>
 </Project>
