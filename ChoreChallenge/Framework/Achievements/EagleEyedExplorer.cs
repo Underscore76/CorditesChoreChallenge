@@ -20,6 +20,7 @@ namespace ChoreChallenge.Framework.Achievements
 			: base("Eagle Eyed Explorer", 25)
 		{
 			instance = this;
+			Chests = new Dictionary<string, HashSet<Vector2>>();
         }
 
         public override void Patch(Harmony harmony)
@@ -51,7 +52,7 @@ namespace ChoreChallenge.Framework.Achievements
 			base.OnSaveLoaded();
 
 			MaxValue = 0;
-            Chests = new Dictionary<string, HashSet<Vector2>>();
+			Chests.Clear();
             foreach (var location in Game1.locations)
 			{
 				if (!Chests.ContainsKey(location.Name))

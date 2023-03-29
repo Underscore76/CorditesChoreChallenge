@@ -18,12 +18,14 @@ namespace ChoreChallenge.Framework
         private static IReflectionHelper Reflection;
         // a reference to the underlying chat boxes private messages
         private List<ChatMessage> Messages;
+        private ModEntry Mod;
 
-        public CustomChatBox()
+        public CustomChatBox(ModEntry mod)
             : base()
 		{
             Messages = Reflection.GetField<List<ChatMessage>>(this, "messages").GetValue();
             maxMessages = 10000;
+            Mod = mod;
         }
 
         public static void Register(IModHelper helper)
@@ -44,6 +46,18 @@ namespace ChoreChallenge.Framework
             }
         }
 
+        protected override void runCommand(string command)
+        {
+            if (command == "chores")
+            {
+                DrawHelper.DisplayInfo("Current Chore Status");
+                Mod.PrintStatus();
+            }
+            else
+            {
+                base.runCommand(command);
+            }
+        }
         public override void addMessage(string message, Color color)
         {
             base.addMessage(message, color);

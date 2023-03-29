@@ -12,7 +12,6 @@ namespace ChoreChallenge.Framework.Achievements
 {
 	public class Brute : IAchievement
 	{
-        private string LastCritTime;
         private static Brute instance;
         public Brute()
             : base("Brute", 5)
@@ -84,8 +83,3 @@ namespace ChoreChallenge.Framework.Achievements
         }
     }
 }
-
-/*
- * damageMonster
-//public bool damageMonster(Microsoft.Xna.Framework.Rectangle areaOfEffect, int minDamage, int maxDamage, bool isBomb, float knockBackModifier, int addedPrecision, float critChance, float critMultiplier, bool triggerMonsterInvincibleTimer, Farmer who)
-*/

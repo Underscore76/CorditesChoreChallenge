@@ -28,7 +28,7 @@ namespace ChoreChallenge.Framework
 			protected set
 			{
 				if (hasSeen) return;
-				if (value)
+				if (value && ModEntry.ValidFile)
 				{
 					DisplayAchievement();
                 }

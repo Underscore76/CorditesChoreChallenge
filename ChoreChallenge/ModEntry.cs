@@ -16,14 +16,15 @@ using System.Reflection;
 
 namespace ChoreChallenge
 {
-    class ModEntry : Mod
+    public class ModEntry : Mod
     {
-        public readonly TimeSpan ChallengeDuration = new TimeSpan(0, 30, 0);
-        public bool HasFinished;
-        public bool IsCheating;
-        public int Score;
-        public RunTimerMenu TimerMenu;
-        public List<IAchievement> Achievements;
+        public static bool ValidFile;
+        private readonly TimeSpan ChallengeDuration = new TimeSpan(0, 30, 0);
+        private bool HasFinished;
+        private bool IsCheating;
+        private int Score;
+        private RunTimerMenu TimerMenu;
+        private List<IAchievement> Achievements;
 
         // https://github.com/tylergibbs2/StardewValleyMods/blob/2fcff682a5121984a5b910c65a7d34b6dbea71db/BattleRoyale/ModEntry.cs#L80
         public static bool IsOnlyMod()
@@ -109,6 +110,8 @@ namespace ChoreChallenge
         {
             if (!Context.IsWorldReady)
                 return;
+            if (!ValidFile)
+                return;
 
             // this leads to a double draw but it forces it to be always on top
             if (TimerMenu != null)
@@ -117,12 +120,17 @@ namespace ChoreChallenge
 
         private void GameLoop_DayEnding(object sender, DayEndingEventArgs e)
         {
+            if (!ValidFile)
+                return;
+
             TimerMenu.End();
         }
 
         private void GameLoop_UpdateTicked(object sender, UpdateTickedEventArgs e)
         {
             if (!Context.IsWorldReady)
+                return;
+            if (!ValidFile)
                 return;
 
             TimerMenu.Update(Score);
@@ -144,7 +152,15 @@ namespace ChoreChallenge
 
         private static bool IsGameValid()
         {
-            return Game1.uniqueIDForThisGame == 338344445 && Game1.player.farmName.Value == "Chore Day" && Game1.player.Name == "Cord" && Game1.stats.DaysPlayed == 46 && Game1.GetSaveGameName() == "Choreday";
+            return (
+                Game1.uniqueIDForThisGame == 338344445 &&
+                Game1.player != null &&
+                Game1.player.saveTime == 5643170 &&
+                Game1.player.farmName.Value == "Chore Day" &&
+                Game1.player.Name == "Cord" &&
+                Game1.stats.DaysPlayed == 46 &&
+                Game1.GetSaveGameName() == "Choreday"
+            );
         }
 
         private void GameLoop_SaveLoaded(object sender, SaveLoadedEventArgs e)
@@ -152,10 +168,12 @@ namespace ChoreChallenge
             if (!Context.IsWorldReady)
                 return;
 
-            TimerMenu.Start();
-            Game1.onScreenMenus.Add(TimerMenu);
-            if (IsGameValid())
+            ValidFile = IsGameValid();
+            if (ValidFile)
             {
+                TimerMenu.Start();
+                Game1.onScreenMenus.Add(TimerMenu);
+
                 HasFinished = false;
                 foreach (var ach in Achievements)
                 {
@@ -163,7 +181,7 @@ namespace ChoreChallenge
                 }
 
                 Game1.onScreenMenus.Remove(Game1.chatBox);
-                Game1.onScreenMenus.Add(Game1.chatBox = new CustomChatBox());
+                Game1.onScreenMenus.Add(Game1.chatBox = new CustomChatBox(this));
                 if (IsCheating)
                 {
                     DrawHelper.DisplayWarning("****OTHER MODS DETECTED: Have Fun Practicing****");
@@ -175,14 +193,8 @@ namespace ChoreChallenge
             }
         }
 
-        private void LogEndScore(TimeSpan duration)
+        public void PrintStatus()
         {
-            Score = 0;
-            foreach (var ach in Achievements)
-            {
-                ach.OnEnd();
-                Score += ach.GetScore();
-            }
             foreach (var ach in Achievements)
             {
                 if (ach is AchievementCollection collection)
@@ -194,6 +206,18 @@ namespace ChoreChallenge
                 }
                 DrawHelper.DisplayAchievementStatus(ach);
             }
+        }
+
+        private void LogEndScore(TimeSpan duration)
+        {
+            Score = 0;
+            foreach (var ach in Achievements)
+            {
+                ach.OnEnd();
+                Score += ach.GetScore();
+            }
+            DrawHelper.DisplayScore(Score, duration);
+            PrintStatus();
             DrawHelper.DisplayScore(Score, duration);
             if (IsCheating)
             {
