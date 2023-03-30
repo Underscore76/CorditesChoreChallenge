@@ -28,6 +28,11 @@ namespace ChoreChallenge.Framework.Achievements
                 prefix: new HarmonyMethod(typeof(Brute), nameof(Brute.Prefix_damageMonster)),
                 postfix: new HarmonyMethod(typeof(Brute), nameof(Brute.Postfix_damageMonster))
                 );
+            harmony.Patch(
+                original: AccessTools.Method(typeof(Mummy), "takeDamage",
+                    new Type[] { typeof(int), typeof(int), typeof(int), typeof(bool), typeof(double), typeof(Farmer) }),
+                prefix: new HarmonyMethod(typeof(Brute), nameof(Brute.Prefix_takeDamage))
+                );
         }
 
         public static bool Prefix_damageMonster(GameLocation __instance, out List<Tuple<Monster,int>> __state)
@@ -80,6 +85,15 @@ namespace ChoreChallenge.Framework.Achievements
                     }
                 }
             }
+        }
+
+        public static bool Prefix_takeDamage(Mummy __instance, bool isBomb)
+        {
+            if (__instance.reviveTimer.Value > 0 && isBomb)
+            {
+                instance.HasSeen = true;
+            }
+            return true;
         }
     }
 }
